@@ -1,53 +1,64 @@
 import { useState, useEffect } from "react";
 import "./App.css";
+import { useFetch } from "./hooks/useFetch";
 
 const url = "http://localhost:3000/products";
 
 function App() {
   const [products, setProducts] = useState([]);
+
+  const {data: items, httpConfig, loading, error} = useFetch(url);
+
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
 
-  useEffect(() => {
-    async function fetchData() {
-      const response = await fetch(url);
-      const data = await response.json();
-      setProducts(data);
-    }
-
-    fetchData();
-  }, []);
+  //useEffect(() => {
+  //  async function fetchData() {
+  //    const response = await fetch(url);
+  //    const data = await response.json();
+  //    setProducts(data);
+  //  }
+//
+  //  fetchData();
+  //}, []);
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-
+    e.preventDefault(); 
     const product = {
       name,
       price,
     };
+  //  const response = await fetch(url, {
+  //    method: "POST",
+  //    headers: {
+  //      "Content-Type": "application/json",
+  //    },
+  //    body: JSON.stringify(product),
+  //  });
+//
+  //  const addedProduct = await response.json();
+//
+  //  setProducts((prevProducts) => [...prevProducts, addedProduct]);
 
-    const response = await fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(product),
-    });
-
-    const addedProduct = await response.json();
-
-    setProducts((prevProducts) => [...prevProducts, addedProduct]);
+    httpConfig(product, "POST")
 
     setName("");
     setPrice("");
-  };
+  }
+
+  const handleRemove = (id) => {
+    httpConfig(id, "DELETE")
+  }
 
   return (
     <>
       <div className="App">
         <h1>Lista de Produtos</h1>
-        <ul>
-          {products.map((product) => (
+        {loading && <p>Carregando dados...</p>}
+        {error && <p>{error}</p>}
+        {!loading && (
+          <ul>
+          {items && items.map((product) => (
             <li key={product.id}>
               <p>
                 <strong>Nome:</strong> {product.name}
@@ -55,12 +66,13 @@ function App() {
               <p>
                 <strong>Preço:</strong> R$ {product.price}
               </p>
-              <p>
-                <strong>Descrição:</strong> {product.description}
-              </p>
+
+              <button onClick={() => handleRemove(product.id)}>Excluir</button>
             </li>
           ))}
         </ul>
+        )}
+        
 
         <div className="addProduct">
           <form onSubmit={handleSubmit}>
@@ -84,7 +96,9 @@ function App() {
               />
             </label>
 
-            <input type="submit" value="Criar" />
+            {loading && <input type="submit" disabled value="Aguarde" />}
+            {!loading && <input type="submit" value="Criar" />}
+            
           </form>
         </div>
       </div>

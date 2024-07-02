@@ -1,29 +1,14 @@
 {
   "products": [
     {
-      "id": 1,
-      "name": "Camisa",
-      "price": 59.9
-    },
-    {
-      "id": 2,
-      "name": "Calça vermelha",
-      "price": 90
-    },
-    {
-      "id": 3,
-      "name": "Boné aba reta",
-      "price": 29.9
-    },
-    {
-      "id": "c752",
-      "name": "teclado",
-      "price": "110"
-    },
-    {
       "id": "fbf0",
       "name": "cadeira",
       "price": "200"
+    },
+    {
+      "id": "0771",
+      "name": "Computador",
+      "price": "5000"
     }
   ]
 }
