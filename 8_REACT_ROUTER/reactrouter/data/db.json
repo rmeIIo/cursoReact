@@ -1,0 +1,19 @@
+{
+  "products": [
+    {
+      "id": "fbf0",
+      "name": "cadeira",
+      "price": "200"
+    },
+    {
+      "id": "0771",
+      "name": "Computador",
+      "price": "5000"
+    },
+    {
+      "id": "0723",
+      "name": "Celular",
+      "price": "3000"
+    }
+  ]
+}
