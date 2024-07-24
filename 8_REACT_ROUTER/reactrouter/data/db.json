@@ -1,17 +1,17 @@
 {
   "products": [
     {
-      "id": "fbf0",
+      "id": "1",
       "name": "cadeira",
       "price": "200"
     },
     {
-      "id": "0771",
+      "id": "2",
       "name": "Computador",
       "price": "5000"
     },
     {
-      "id": "0723",
+      "id": "3",
       "name": "Celular",
       "price": "3000"
     }
