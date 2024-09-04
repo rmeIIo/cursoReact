@@ -7,7 +7,18 @@ const HookUseRef = () => {
 
   useEffect(() => {
     numberRef.current++;
-  })
+  });
+
+  const inputRef = useRef();
+  const [text, setText] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    setText("");
+
+    inputRef.current.focus();
+  };
 
   return (
     <div>
@@ -33,6 +44,18 @@ const HookUseRef = () => {
       >
         Contador B
       </button>
+
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={text}
+          ref={inputRef}
+          onChange={(e) => {
+            setText(e.target.value);
+          }}
+        />
+        <input type="submit" value="Enviar" />
+      </form>
 
       <hr />
     </div>
