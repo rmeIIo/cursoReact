@@ -6,9 +6,10 @@ import { useContext } from "react";
 import { someContext } from "../components/HookUseContext";
 import HookUseRef from "../components/HookUseRef";
 import HookUseCallback from "../components/HookUseCallback";
+import HookUseMemo from "../components/HookUseMemo";
 
 const Home = () => {
-  const {contextValue} = useContext(someContext);
+  const { contextValue } = useContext(someContext);
 
   return (
     <div>
@@ -22,6 +23,7 @@ const Home = () => {
 
       <HookUseRef />
       <HookUseCallback />
+      <HookUseMemo />
     </div>
   );
 };
